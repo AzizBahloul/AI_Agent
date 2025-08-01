@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+pydantic
+loguru
+httpx
+websockets
+mss
+opencv-python
+pillow
+watchdog
+python-magic
+send2trash
+numpy
