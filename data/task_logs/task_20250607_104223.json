@@ -1,0 +1,41 @@
+{
+  "session_id": "task_20250607_104223",
+  "command": "open chrome and search for artificial intelligence and click on the first result",
+  "timestamp": "2025-06-07T10:42:30.764410",
+  "total_steps": 8,
+  "steps": [
+    "Open Google Chrome",
+    "Wait for Chrome to load (3 seconds)",
+    "Focus on the address bar (press Ctrl+L)",
+    "Type 'artificial intelligence' in the address bar",
+    "Press Enter to search",
+    "Wait for search results to load (3 seconds)",
+    "Look for and click on the first result link",
+    "Wait for the clicked page to load (3 seconds)"
+  ],
+  "completed_steps": [
+    [
+      0,
+      "Open Google Chrome"
+    ]
+  ],
+  "failed_steps": [
+    [
+      1,
+      "Wait for Chrome to load (3 seconds)"
+    ]
+  ],
+  "elapsed_time": 7.025857448577881,
+  "summary": {
+    "session_id": "task_20250607_104223",
+    "command": "open chrome and search for artificial intelligence and click on the first result",
+    "success": false,
+    "total_steps": 8,
+    "completed_steps": 1,
+    "failed_steps": 1,
+    "completion_rate": 0.125,
+    "duration_seconds": 7.025832653045654,
+    "start_time": "2025-06-07T10:42:23.738558",
+    "end_time": "2025-06-07T10:42:30.764390"
+  }
+}

@@ -1,0 +1,15 @@
+# Core dependencies for MCP AI Agent
+pyautogui==0.9.54
+pillow==10.1.0
+opencv-python==4.8.1.78
+pytesseract==0.3.10
+requests==2.31.0
+mss==9.0.1
+psutil==5.9.6
+numpy==1.24.3
+pynput==1.7.6
+screeninfo==0.8.1
+python-dotenv==1.0.0
+pyperclip==1.8.2
+# Note: The following packages are part of the Python standard library and don't need to be installed
+# asyncio, queue, json, logging, pathlib, time, subprocess, typing, dataclasses
