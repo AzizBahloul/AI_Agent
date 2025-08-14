@@ -1,0 +1,80 @@
+version: "3.8"
+services:
+  # Ollama instances (each container listens on 11434 internally)
+  ollama1:
+    image: ollama/ollama:latest
+    container_name: ollama1
+    volumes:
+      - ollama1-data:/root/.ollama
+    restart: unless-stopped
+
+  ollama2:
+    image: ollama/ollama:latest
+    container_name: ollama2
+    volumes:
+      - ollama2-data:/root/.ollama
+    restart: unless-stopped
+
+  ollama3:
+    image: ollama/ollama:latest
+    container_name: ollama3
+    volumes:
+      - ollama3-data:/root/.ollama
+    restart: unless-stopped
+
+  # Wrapper services call the ollama services by service name (internal network)
+  model1-wrapper:
+    build: ./model-wrappers/model1
+    environment:
+      - OLLAMA_URL=http://ollama1:11434
+    depends_on:
+      - ollama1
+
+  model2-wrapper:
+    build: ./model-wrappers/model2
+    environment:
+      - OLLAMA_URL=http://ollama2:11434
+    depends_on:
+      - ollama2
+
+  model3-wrapper:
+    build: ./model-wrappers/model3
+    environment:
+      - OLLAMA_URL=http://ollama3:11434
+    depends_on:
+      - ollama3
+
+  orchestrator:
+    build: ./orchestrator
+    environment:
+      - MODEL1_URL=http://model1-wrapper:5000
+      - MODEL2_URL=http://model2-wrapper:5000
+      - MODEL3_URL=http://model3-wrapper:5000
+      - EXECUTOR_URL=http://executor:5001
+    ports:
+      - "8000:8000"
+    depends_on:
+      - model1-wrapper
+      - model2-wrapper
+      - model3-wrapper
+      - executor
+
+  executor:
+    build: ./executor
+    environment:
+      - ALLOW_EXECUTION=false   # Set to true ONLY after you reviewed everything & run in a safe sandbox
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix   # if you want to access X server; careful!
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - orchestrator
+
+volumes:
+  ollama1-data:
+  ollama2-data:
+  ollama3-data:

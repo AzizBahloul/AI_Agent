@@ -1,0 +1,4 @@
+flask
+pyautogui
+opencv-python-headless
+numpy
